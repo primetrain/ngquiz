@@ -1,0 +1,27 @@
+<div class="container" style="height: 4em;">
+  <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" >Add Question</button>
+</div>
+<div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
+  <div class="w-100">
+    <ol>
+      <li *ngFor="let question of questions; let i = index">
+        <div class="card bg-light mb-3">
+          <div class="card-header">{{ question.name }}
+            <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="float-right btn btn-light mr-1" (click)="deleteQuestion(question)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"> {{ question.answer }}</h5>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+<ng-template #elseTemplate>
+  <p class="text-center"> No questions to create one <span class="link" (click)="addQuestion()">click here.</span></p>
+</ng-template>

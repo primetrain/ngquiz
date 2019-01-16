@@ -1,0 +1,3 @@
+interface Href{
+    href: String
+}
