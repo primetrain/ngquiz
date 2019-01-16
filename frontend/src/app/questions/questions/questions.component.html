@@ -1,27 +1,69 @@
-<div class="container" style="height: 4em;">
-  <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" >Add Question</button>
+<div class="container" id="search" style="height: 4em;">
+  <form class="">
+    <div class="form-group text-center">
+      <input
+        #searchText
+        id="searchText"
+        type="text"
+        class="form-control"
+        aria-describedby="questionHelp"
+        placeholder="Enter Search query"
+      />
+
+      <button
+        class="btn btn-primary float-right my-3"
+        (click)="searchQuestionsWithText(searchText.value)"
+      >
+        Search
+      </button>
+    </div>
+  </form>
 </div>
-<div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
+
+<div class="container" style="height: 4em;">
+  <button class="btn btn-primary float-right my-3" (click)="addQuestion()">
+    Add Question
+  </button>
+</div>
+
+<div
+  class="container mt-2"
+  *ngIf="questions && questions.length; else elseTemplate"
+>
   <div class="w-100">
-    <ol>
-      <li *ngFor="let question of questions; let i = index">
+    <ol *ngIf="filteredQuestions?.length > 0">
+      <li *ngFor="let question of filteredQuestions">
         <div class="card bg-light mb-3">
-          <div class="card-header">{{ question.name }}
-            <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
-                <i class="fas fa-pencil-alt"></i>
+          <div class="card-header">
+            {{ question.name }}
+            <button
+              class="float-right btn btn-light ml-1"
+              (click)="editQuestion(question)"
+            >
+              <i class="fas fa-pencil-alt"></i>
             </button>
-            <button class="float-right btn btn-light mr-1" (click)="deleteQuestion(question)">
+            <button
+              class="float-right btn btn-light mr-1"
+              (click)="deleteQuestion(question)"
+            >
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
           <div class="card-body">
-            <h5 class="card-title"> {{ question.answer }}</h5>
+            <h5 class="card-title">{{ question.answer }}</h5>
           </div>
         </div>
       </li>
     </ol>
+
+    <div id="noSearchItems" *ngIf="filteredQuestions?.length === 0">
+      No questions found by executing search on name and answer
+    </div>
   </div>
 </div>
 <ng-template #elseTemplate>
-  <p class="text-center"> No questions to create one <span class="link" (click)="addQuestion()">click here.</span></p>
+  <p class="text-center">
+    No questions to create one
+    <span class="link" (click)="addQuestion()">click here.</span>
+  </p>
 </ng-template>
