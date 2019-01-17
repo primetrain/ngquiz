@@ -51,3 +51,24 @@
   width: 15%;
   margin: 0 !important;
 }
+
+input.correct {
+  border-color: #549661;
+}
+
+.validation-result.correct {
+  color: #549661;
+}
+
+input.incorrect {
+  border-color: #d1675c;
+}
+
+.validation-result.incorrect {
+  color: #d1675c;
+}
+
+.card-body button {
+  width: 15%;
+  margin: 0 !important;
+}
