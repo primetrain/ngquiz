@@ -14,7 +14,7 @@
         class="btn btn-primary float-right my-3"
         (click)="searchQuestionsWithText(searchText.value)"
       >
-        Search
+      <i class="fab fa-searchengin"></i> Search
       </button>
     </div>
   </form>
@@ -23,15 +23,15 @@
 
 <div class="container" style="height: 4em;">
 
-  <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/myquiz' ]">Take Quiz</a>
-  <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" >Add Question</button>
+  <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/myquiz' ]"> <i class="fas fa-question-circle"></i> Take Quiz</a>
+  <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" > <i class="fas fa-plus"></i> Add Question</button>
 </div>
 <div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
   <div class="w-100">
     <ol>
-      <li *ngFor="let question of filteredQuestions">
+      <li *ngFor="let question of filteredQuestions; let i = index">
         <div class="card bg-light mb-3">
-          <div class="card-header">{{ question.name }}
+          <div class="card-header"><span class="align-bottom mt-1">{{ i + 1 }}. {{ question.name }}</span>
             <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
                 <i class="fas fa-pencil-alt"></i>
             </button>

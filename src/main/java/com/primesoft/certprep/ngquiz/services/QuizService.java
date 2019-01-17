@@ -18,10 +18,12 @@ public class QuizService {
     private QuizRepository quizDao;
 
     @Transactional
-    public List<Question> getQuizQuestions(int noOfQuestions){
+    public List<Question> getQuizQuestions(int noOfQuestions) {
         List<Question> questions = (List<Question>) quizDao.getQuizQuestions(noOfQuestions);
         List<Question> selectedQuestions = new ArrayList<Question>();
         Random random = new Random();
+        if(questions.size() < noOfQuestions) throw new RuntimeException("please select lower number of Questions?");
+
         while( selectedQuestions.size() < noOfQuestions ){
             int randN =  random.nextInt(questions.size());
             selectedQuestions.add(questions.remove(randN));

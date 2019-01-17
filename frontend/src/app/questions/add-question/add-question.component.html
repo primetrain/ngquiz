@@ -9,10 +9,10 @@
   </div>
   <div class="w-50">
     <ng-container *ngIf="editurl == ''; else elseTemplate">
-      <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.valid"> Add Question</button>
+      <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.valid"> <i class="fas fa-plus"></i> Add Question</button>
     </ng-container>
     <ng-template #elseTemplate>
-        <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.dirty"> Update Question</button>
+        <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.dirty"> <i class="fas fa-pencil-alt"></i>  Update Question</button>
     </ng-template>
     
   </div>
