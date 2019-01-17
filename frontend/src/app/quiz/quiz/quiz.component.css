@@ -1,0 +1,74 @@
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.header {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.header button {
+  margin-left: 10px;
+}
+
+.white-text {
+  color: lightgray;
+}
+
+.blue-text {
+  color: lightblue;
+}
+
+.green-text {
+  color: #549661;
+}
+
+.card-body input,
+.card-body button {
+  display: inline-block;
+}
+
+.card-body input {
+  padding-left: 0.3125rem;
+  width: 80%;
+}
+
+.card-body input.full-width {
+  margin-bottom: 1.25rem;
+
+  padding: 0.3125rem;
+
+  width: 100%;
+}
+
+.card-body .input-info {
+  padding-left: 0.3125rem;
+  font-size: 0.75rem;
+}
+
+.card-body button {
+  width: 15%;
+  margin: 0 !important;
+}
+
+input.correct {
+  border-color: #549661;
+}
+
+.validation-result.correct {
+  color: #549661;
+}
+
+input.incorrect {
+  border-color: #d1675c;
+}
+
+.validation-result.incorrect {
+  color: #d1675c;
+}
+
+.card-body button {
+  width: 15%;
+  margin: 0 !important;
+}
