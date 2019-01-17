@@ -1,5 +1,26 @@
 .link {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
+#search {
+  margin-top: 1.25rem;
+}
+
+#search input,
+#search button {
+  display: inline-block;
+}
+
+#search input {
+  width: 80%;
+}
+
+#search button {
+  width: 15%;
+  margin: 0 !important;
+}
+
+#noSearchItems {
+  color: white;
+}

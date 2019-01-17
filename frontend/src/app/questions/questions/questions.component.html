@@ -1,3 +1,26 @@
+<div class="container" id="search" style="height: 4em;">
+  <form class="">
+    <div class="form-group text-center">
+      <input
+        #searchText
+        id="searchText"
+        type="text"
+        class="form-control"
+        aria-describedby="questionHelp"
+        placeholder="Enter Search query"
+      />
+
+      <button
+        class="btn btn-primary float-right my-3"
+        (click)="searchQuestionsWithText(searchText.value)"
+      >
+        Search
+      </button>
+    </div>
+  </form>
+</div>
+
+
 <div class="container" style="height: 4em;">
 
   <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/myquiz' ]">Take Quiz</a>
@@ -6,7 +29,7 @@
 <div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
   <div class="w-100">
     <ol>
-      <li *ngFor="let question of questions; let i = index">
+      <li *ngFor="let question of filteredQuestions">
         <div class="card bg-light mb-3">
           <div class="card-header">{{ question.name }}
             <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
@@ -22,6 +45,9 @@
         </div>
       </li>
     </ol>
+    <div id="noSearchItems" *ngIf="filteredQuestions?.length === 0">
+      No questions found by executing search on name and answer
+    </div>
   </div>
 </div>
 <ng-template #elseTemplate>

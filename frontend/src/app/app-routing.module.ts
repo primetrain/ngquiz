@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AppComponent } from './app.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
+import { AppComponent } from "./app.component";
 
 const routes: Routes = [
   {
@@ -12,20 +12,23 @@ const routes: Routes = [
     loadChildren: './questions/questions.module#QuestionsModule'
   },
   {
-    path: '',
+    path: "quiz",
+    loadChildren: "./quiz/quiz.module#QuizModule"
+  },
+  {
+    path: "",
     component: AppComponent,
-    pathMatch: 'full'
+    pathMatch: "full"
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes,
-    {
+    RouterModule.forRoot(routes, {
       // enableTracing: true,
       preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

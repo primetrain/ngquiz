@@ -1,0 +1,78 @@
+<div class="container mt-2" *ngIf="quiz && quiz.length; else elseTemplate">
+  <div class="w-100" *ngIf="!showResults">
+    <div class="header">
+      <span class="white-text float-left"
+        >Question {{ quizQuestionIndex + 1 }}</span
+      >
+
+      <div class="float-right">
+        <span class="blue-text"> Answered: {{ questionsInfo.answered }} </span>
+        <span class="green-text"> Correct: {{ questionsInfo.correct }} </span>
+        <span class="white-text"> Total: {{ quiz.length }}</span>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        {{ this.quiz[quizQuestionIndex].question.name }}
+      </div>
+
+      <div class="card-body">
+        <ng-container *ngIf="this.quiz[quizQuestionIndex].correct === null">
+          <input #answer placeholder="Answer to the question" />
+
+          <button
+            class="btn btn-primary float-right"
+            (click)="checkQuestionAnswer(answer.value)"
+          >
+            Apply answer
+          </button>
+
+          <div class="input-info">
+            Note, that empty answeres are not allowed.
+          </div>
+        </ng-container>
+
+        <span *ngIf="this.quiz[quizQuestionIndex].correct !== null">
+          <input
+            class="full-width {{
+              this.quiz[quizQuestionIndex].correct ? 'correct' : 'incorrect'
+            }}"
+            disabled
+            value="{{ this.quiz[quizQuestionIndex].givenAnswer }}"
+          />
+
+          <span
+            class="validation-result {{
+              this.quiz[quizQuestionIndex].correct ? 'correct' : 'incorrect'
+            }}"
+          >
+            Answer is
+            {{ this.quiz[quizQuestionIndex].correct ? "" : "in" }}correct
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <button
+        *ngIf="quizQuestionIndex > 0"
+        class="btn btn-primary float-left"
+        (click)="toPreviousQuestion()"
+      >
+        To previous
+      </button>
+
+      <button
+        *ngIf="quizQuestionIndex < quiz.length - 1"
+        class="btn btn-primary float-right"
+        (click)="toNextQuestion()"
+      >
+        To next
+      </button>
+    </div>
+  </div>
+</div>
