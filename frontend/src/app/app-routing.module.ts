@@ -4,8 +4,8 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: 'quiz',
-    loadChildren: './quiz/quiz.module#QuizModule'
+    path: 'myquiz',
+    loadChildren: './myquiz/quiz.module#QuizModule'
   },
   {
     path: 'admin',

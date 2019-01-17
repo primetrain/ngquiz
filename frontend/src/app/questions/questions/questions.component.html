@@ -1,6 +1,6 @@
 <div class="container" style="height: 4em;">
 
-  <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/quiz' ]">Take Quiz</a>
+  <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/myquiz' ]">Take Quiz</a>
   <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" >Add Question</button>
 </div>
 <div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
