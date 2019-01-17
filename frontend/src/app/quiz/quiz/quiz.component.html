@@ -1,0 +1,20 @@
+
+<div class="row">
+  <div class="col-md-12">
+      <form id="msform" (ngSubmit)="getResults()">
+          <ul id="progressbar">
+              <li [class.active]="i == 0" *ngFor="let question of questions; let i = index "> {{ i + 1}}</li>
+          </ul>
+          <fieldset *ngFor="let question of questions; let i = index " class="animated faster">
+              <h3 class="fs-subtitle">Question {{ i + 1 }}</h3>
+              <h3 class="fs-title">{{ question.name }}</h3>
+              <textarea type="text" name="answer" placeholder="Type Your Answer Here"></textarea>
+              <input type="button" name="previous" class="previous action-button-previous" value="Previous" 
+               (click)="previousHandler($event)"  *ngIf="i > 0"/>
+              <input type="button" name="next" class="next action-button" value="Next"  *ngIf="i < questions.length - 1 "
+               (click)="nextHandler($event)" />
+              <input type="submit" name="submit" class="submit action-button" value="Submit" *ngIf="i == questions.length -1" />
+          </fieldset>
+      </form>
+  </div>
+</div>
