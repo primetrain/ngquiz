@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { QuestionsService } from "../_shared/questions.service";
+import { QuestionsService } from "../../_shared/questions.service";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({

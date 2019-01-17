@@ -1,0 +1,42 @@
+<div class="container mt-2" *ngIf="quiz && quiz.length; else elseTemplate">
+  <div class="header">
+    <span class="white-text float-left"
+      >Question {{ quizQuestionIndex + 1 }}</span
+    >
+  </div>
+  <br />
+  <br />
+  <div class="card bg-light mb-3">
+    <div class="card-header">
+      {{ this.quiz[quizQuestionIndex].question.name }}
+    </div>
+    <div class="card-body">
+      <ng-container>
+        <input #answer placeholder="Answer to the question" />
+
+        <button class="btn btn-primary float-right">Apply answer</button>
+
+        <div class="input-info">Note, that empty answeres are not allowed.</div>
+      </ng-container>
+    </div>
+  </div>
+  <div>
+    <button
+      *ngIf="quizQuestionIndex > 0"
+      class="btn btn-primary float-left"
+      (click)="toPreviousQuestion()"
+    >
+      To previous
+    </button>
+    <button
+      *ngIf="quizQuestionIndex < quiz.length - 1"
+      class="btn btn-primary float-right"
+      (click)="toNextQuestion()"
+    >
+      To next
+    </button>
+  </div>
+</div>
+<ng-template #elseTemplate>
+  <p class="text-center">Sorry, there are no questions available yet</p>
+</ng-template>
