@@ -8,7 +8,7 @@
   padding-right: 1.25rem;
 }
 
-.header button {
+.header button{
   margin-left: 10px;
 }
 
@@ -47,25 +47,20 @@
   font-size: 0.75rem;
 }
 
-.card-body button {
-  width: 15%;
-  margin: 0 !important;
-}
-
 input.correct {
   border-color: #549661;
 }
 
-.validation-result.correct {
+.validation-result.correct{
   color: #549661;
 }
 
 input.incorrect {
-  border-color: #d1675c;
+  border-color: #D1675C;
 }
 
-.validation-result.incorrect {
-  color: #d1675c;
+.validation-result.incorrect{
+  color: #D1675C;
 }
 
 .card-body button {

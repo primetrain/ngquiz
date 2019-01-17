@@ -20,7 +20,7 @@ export class QuizComponent implements OnInit {
       response => {
         // Creating queue of randomized questions
 
-        for (let question of response["_embedded"]["questions"]) {
+        for (let question of this.shuffle(response["_embedded"]["questions"])) {
           this.quiz.push({
             question: question,
             givenAnswer: null,
@@ -59,7 +59,26 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  //TBD:- Randomizing the array - based on Math random
+  // Randomizing the array - based on Math random
+  private shuffle(array) {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
 
   get questionsInfo(): QuizStatistics {
     let stat: QuizStatistics = {

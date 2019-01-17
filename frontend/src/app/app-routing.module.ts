@@ -1,30 +1,31 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
-import { AppComponent } from "./app.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
-    path: "admin",
-    loadChildren: "./questions/questions.module#QuestionsModule"
+    path: 'admin',
+    loadChildren: './questions/questions.module#QuestionsModule'
   },
   {
-    path: "quiz",
-    loadChildren: "./quiz/quiz.module#QuizModule"
+    path: 'quiz',
+    loadChildren: './quiz/quiz.module#QuizModule'
   },
   {
-    path: "",
+    path: '',
     component: AppComponent,
-    pathMatch: "full"
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
+    RouterModule.forRoot(routes,
+    {
       // enableTracing: true,
       preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

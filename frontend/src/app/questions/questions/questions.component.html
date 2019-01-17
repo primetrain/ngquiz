@@ -1,86 +1,43 @@
-<div class="container mt-2" *ngIf="quiz && quiz.length; else elseTemplate">
-  <div class="w-100" *ngIf="!showResults">
-    <div class="header">
-      <span class="white-text float-left"
-        >Question {{ quizQuestionIndex + 1 }}</span
-      >
+<div class="container" id="search" style="height: 4em;">
+  <form class="">
+    <div class="form-group text-center">
+      <input #searchText id="searchText" type="text" class="form-control" aria-describedby="questionHelp"
+             placeholder="Enter Search query">
 
-      <div class="float-right">
-        <span class="blue-text"> Answered: {{ questionsInfo.answered }} </span>
-        <span class="green-text"> Correct: {{ questionsInfo.correct }} </span>
-        <span class="white-text"> Total: {{ quiz.length }}</span>
-
-        <button
-          class="btn btn-primary"
-          *ngIf="questionsInfo.answered === quiz.length && quiz.length !== 0"
-          (click)="showResults = true"
-        >
-          Results
-        </button>
-      </div>
+      <button class="btn btn-primary float-right my-3" (click)="searchQuestionsWithText(searchText.value)">Search</button>
     </div>
+  </form>
+</div>
 
-    <br />
-    <br />
+<div class="container" style="height: 4em;">
+  <button class="btn btn-primary float-right my-3" (click)="addQuestion()">Add Question</button>
+</div>
 
-    <div class="card bg-light mb-3">
-      <div class="card-header">
-        {{ this.quiz[quizQuestionIndex].question.name }}
-      </div>
-
-      <div class="card-body">
-        <ng-container *ngIf="this.quiz[quizQuestionIndex].correct === null">
-          <input #answer placeholder="Answer to the question" />
-
-          <button
-            class="btn btn-primary float-right"
-            (click)="checkQuestionAnswer(answer.value)"
-          >
-            Apply answer
-          </button>
-
-          <div class="input-info">
-            Note, that empty answeres are not allowed.
+<div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
+  <div class="w-100">
+    <ol *ngIf="filteredQuestions?.length > 0">
+      <li *ngFor="let question of filteredQuestions">
+        <div class="card bg-light mb-3">
+          <div class="card-header">{{ question.name }}
+            <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="float-right btn btn-light mr-1" (click)="deleteQuestion(question)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </div>
-        </ng-container>
+          <div class="card-body">
+            <h5 class="card-title"> {{ question.answer }}</h5>
+          </div>
+        </div>
+      </li>
+    </ol>
 
-        <span *ngIf="this.quiz[quizQuestionIndex].correct !== null">
-          <input
-            class="full-width {{
-              this.quiz[quizQuestionIndex].correct ? 'correct' : 'incorrect'
-            }}"
-            disabled
-            value="{{ this.quiz[quizQuestionIndex].givenAnswer }}"
-          />
-
-          <span
-            class="validation-result {{
-              this.quiz[quizQuestionIndex].correct ? 'correct' : 'incorrect'
-            }}"
-          >
-            Answer is
-            {{ this.quiz[quizQuestionIndex].correct ? "" : "in" }}correct
-          </span>
-        </span>
-      </div>
-    </div>
-
-    <div>
-      <button
-        *ngIf="quizQuestionIndex > 0"
-        class="btn btn-primary float-left"
-        (click)="toPreviousQuestion()"
-      >
-        To previous
-      </button>
-
-      <button
-        *ngIf="quizQuestionIndex < quiz.length - 1"
-        class="btn btn-primary float-right"
-        (click)="toNextQuestion()"
-      >
-        To next
-      </button>
+    <div id="noSearchItems" *ngIf="filteredQuestions?.length === 0">
+      No questions found by executing search on name and answer
     </div>
   </div>
 </div>
+<ng-template #elseTemplate>
+  <p class="text-center"> No questions to create one <span class="link" (click)="addQuestion()">click here.</span></p>
+</ng-template>
