@@ -6,11 +6,16 @@ import { CanDeactivateGuard } from './can-deactivate.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'questions',
     component: QuestionsComponent
   },
   {
-    path: 'add',
+    path: 'question/add',
+    component: AddQuestionComponent,
+    canDeactivate: [CanDeactivateGuard]
+  },
+  {
+    path: 'question/edit',
     component: AddQuestionComponent,
     canDeactivate: [CanDeactivateGuard]
   }

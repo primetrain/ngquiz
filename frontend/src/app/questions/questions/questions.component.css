@@ -2,6 +2,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+ol {
+  list-style-type: none;
+}
 
 #search {
   margin-top: 1.25rem;
@@ -13,11 +16,11 @@
 }
 
 #search input {
-  width: 80%;
+  width: 78%;
 }
 
 #search button {
-  width: 15%;
+  width: 13%;
   margin: 0 !important;
 }
 

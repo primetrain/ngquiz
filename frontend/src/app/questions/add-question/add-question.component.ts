@@ -35,14 +35,18 @@ export class AddQuestionComponent implements OnInit {
     .addQuestion(this.question.value)
     .subscribe(
       response => {
-        this.formSubmitted = true
-        this.router.navigate(['../'], { relativeTo: this.route})
-
+        this.handleNavigation()
       },
       error => {
         console.error(error)
       }
     )
+  }
+
+
+  handleNavigation () {
+    this.formSubmitted = true
+    this.router.navigate(['../../', 'questions'], { relativeTo: this.route})  
   }
 
   onSubmit() {
@@ -55,8 +59,7 @@ export class AddQuestionComponent implements OnInit {
     .updateQuestion(this.question.value, this.editurl)
     .subscribe(
       response => {
-        this.formSubmitted = true
-        this.router.navigate(['../'], { relativeTo: this.route})
+       this.handleNavigation()
       },
       error => {
         console.error(error)

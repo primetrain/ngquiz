@@ -32,7 +32,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   addQuestion () {
-    this.router.navigate(['add'], { relativeTo: this.route})
+    this.router.navigate(['..', 'question', 'add'], { relativeTo: this.route})
   }
 
   deleteQuestion (question: Question ) {
@@ -50,7 +50,7 @@ export class QuestionsComponent implements OnInit {
 
   editQuestion (question: Question) {
     this.questionsService.selectedItem = question;
-    this.router.navigate(['add'],{relativeTo: this.route })
+    this.router.navigate(['..', 'question', 'edit'],{relativeTo: this.route })
   }
 
   // returns question by the search on the question and answer
