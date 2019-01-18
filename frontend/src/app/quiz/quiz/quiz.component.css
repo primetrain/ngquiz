@@ -8,7 +8,7 @@
   padding-right: 1.25rem;
 }
 
-.header button{
+.header button {
   margin-left: 10px;
 }
 
@@ -51,19 +51,30 @@ input.correct {
   border-color: #549661;
 }
 
-.validation-result.correct{
+.validation-result.correct {
   color: #549661;
 }
 
 input.incorrect {
-  border-color: #D1675C;
+  border-color: #d1675c;
 }
 
-.validation-result.incorrect{
-  color: #D1675C;
+.validation-result.incorrect {
+  color: #d1675c;
 }
 
 .card-body button {
   width: 15%;
   margin: 0 !important;
+}
+
+#quizResults {
+  color: white;
+
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+#quizResults > div:first-of-type {
+  margin-bottom: 0.625rem;
 }
