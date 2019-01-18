@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
+import { LoginService } from './_shared/login.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RootComponent } from './root/root.component';
     AppRoutingModule
   ],
   providers: [
-    QuestionsService
+    QuestionsService,
+    LoginService
   ],
   bootstrap: [RootComponent]
 })
