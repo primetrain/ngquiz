@@ -1,19 +1,15 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { QuestionsService } from './_shared/questions.service';
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { QuestionsService } from "./_shared/questions.service";
+import { AppRoutingModule } from "./app-routing.module";
 
-
-import { AppComponent } from './app.component';
-import { RootComponent } from './root/root.component';
+import { AppComponent } from "./app.component";
+import { RootComponent } from "./root/root.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RootComponent
-  ],
+  declarations: [AppComponent, RootComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -21,9 +17,7 @@ import { RootComponent } from './root/root.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [
-    QuestionsService
-  ],
+  providers: [QuestionsService],
   bootstrap: [RootComponent]
 })
-export class AppModule { }
+export class AppModule {}
