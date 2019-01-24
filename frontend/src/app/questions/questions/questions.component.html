@@ -1,55 +1,65 @@
-<div class="container" id="search" style="height: 4em;">
-  <form class="">
-    <div class="form-group text-center">
-      <input
-        #searchText
-        id="searchText"
-        type="text"
-        class="form-control"
-        aria-describedby="questionHelp"
-        placeholder="Enter Search query"
-      />
+<div class="container" id="search">
+    <mat-form-field class="search-field">
+      <input #searchText id="searchText" matInput placeholder="Enter Search query"/>
+    </mat-form-field>
 
-      <button
-        class="btn btn-primary float-right my-3"
-        (click)="searchQuestionsWithText(searchText.value)"
-      >
-      <i class="fab fa-searchengin"></i> Search
-      </button>
-    </div>
-  </form>
+      <button class="float-right my-3" mat-raised-button color="primary" (click)="searchQuestionsWithText(searchText.value)">
+        <i class="fab fa-searchengin"></i> Search
+      </button> 
 </div>
 
 
 <div class="container" style="height: 4em;">
+  <button mat-raised-button color="primary" class="float-right my-3 ml-2" (click)="startQuiz()">
+    <mat-icon>
+      assignment
+    </mat-icon>
 
-  <a class="btn btn-primary float-right my-3 ml-2" [routerLink]="[ '/myquiz' ]"> <i class="fas fa-question-circle"></i> Take Quiz</a>
-  <button class="btn btn-primary float-right my-3"  (click)="addQuestion()" > <i class="fas fa-plus"></i> Add Question</button>
+    Take Quiz
+  </button>
+  <button mat-raised-button color="primary" class="float-right my-3" (click)="addQuestion()">
+    <mat-icon>
+      add
+    </mat-icon>
+    Add Question
+  </button>
 </div>
+
 <div class="container mt-2" *ngIf="questions && questions.length; else elseTemplate">
-  <div class="w-100">
-    <ol>
-      <li *ngFor="let question of filteredQuestions; let i = index">
-        <div class="card bg-light mb-3">
-          <div class="card-header"><span class="align-bottom mt-1">{{ i + 1 }}. {{ question.name }}</span>
-            <button class="float-right btn btn-light ml-1" (click)="editQuestion(question)">
-                <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button class="float-right btn btn-light mr-1" (click)="deleteQuestion(question)">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"> {{ question.answer }}</h5>
-          </div>
-        </div>
-      </li>
-    </ol>
-    <div id="noSearchItems" *ngIf="filteredQuestions?.length === 0">
-      No questions found by executing search on name and answer
+    <div class="w-100">
+      <ol>
+        <li *ngFor="let question of filteredQuestions; let i = index">
+            <mat-card mat-line class="mb-3" >
+                <mat-card-header>
+                  <mat-card-title>
+                      {{ i + 1 }}. {{ question.name }}
+                  </mat-card-title>
+                  <span class="spacer"></span>
+                  <button mat-button (click)="editQuestion(question)">
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button mat-button (click)="deleteQuestion(question)">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                </mat-card-header>
+                <mat-card-content>
+                    <h5 class="pl-4"> Answer: {{ question.answer }}</h5>
+                </mat-card-content>
+              </mat-card>
+        </li>
+      </ol>
+      <div id="noSearchItems" *ngIf="filteredQuestions?.length === 0">
+        No questions found by executing search on name and answer
+      </div>
     </div>
   </div>
-</div>
+
+
 <ng-template #elseTemplate>
-  <p class="text-center"> No questions to create one <span class="link" (click)="addQuestion()">click here.</span></p>
+  <p class="text-center">
+    No questions to create one
+    <span class="link" (click)="addQuestion()">
+      click here.
+    </span>
+  </p>
 </ng-template>

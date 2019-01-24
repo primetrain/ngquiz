@@ -1,19 +1,37 @@
-<form class="w-50 pl-5" [formGroup]="question" (ngSubmit)="onSubmit()" #form="ngForm">
-  <div class="form-group w-50 ml-5 pl-5 text-center">
-    <label for="question">Question</label>
-    <input type="text" class="form-control" aria-describedby="questionHelp" placeholder="Enter Question" formControlName="name" required>
+
+  <div class="container">
+    <div class="custom-card">
+      <h2 > Add Question </h2>
+      <mat-card class="card-height">
+        <mat-card-content>
+          <form [formGroup]="question" (ngSubmit)="onSubmit()" #form="ngForm">
+      
+                  <div class="inputs">
+                      <mat-form-field class="form-field">
+                          <input matInput placeholder="Enter Question" formControlName="name" required>
+                        </mat-form-field>
+                  
+                          <mat-form-field class="form-field">
+                            <input matInput placeholder="Enter Answer" formControlName="answer" required>
+                          </mat-form-field>
+                  </div>
+            
+                    <button type="submit" class="float-right" [disabled]="!form.form.valid" mat-raised-button
+                     color="primary" *ngIf="!isEdit">
+                       <i class="fas fa-plus">
+                       </i>
+                      Add Question
+                    </button>
+
+                    <button type="submit" class="float-right" [disabled]="!form.form.dirty" mat-raised-button
+                     color="primary" *ngIf="isEdit">
+                       <i class="fas fa-pencil-alt">
+                       </i>
+                      Update Question
+                    </button>
+                  
+            </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div class="form-group w-50 ml-5 pl-5 text-center">
-    <label for="answer">Answer</label>
-    <input type="text" class="form-control" aria-describedby="answerHelp" placeholder="Enter Answer" formControlName="answer" required>
-  </div>
-  <div class="w-50">
-    <ng-container *ngIf="editurl == ''; else elseTemplate">
-      <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.valid"> <i class="fas fa-plus"></i> Add Question</button>
-    </ng-container>
-    <ng-template #elseTemplate>
-        <button type="submit" class="btn btn-primary float-right" [disabled]="!form.form.dirty"> <i class="fas fa-pencil-alt"></i>  Update Question</button>
-    </ng-template>
-    
-  </div>
-</form>

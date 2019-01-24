@@ -1,0 +1,21 @@
+<form #form="ngForm" (ngSubmit)="sendNumberOfQuestions()">
+  <div class="row mt-4"> 
+    <p class="ml-5 pl-3 w-100">Please Select Number of Questions You want to be questioned ?</p>
+   <div class="row offset-sm-4">
+      <mat-form-field>
+        <input 
+          type="number"
+          matInput 
+          placeholder="Number of Questions" 
+          [formControl]="numberOfQuestions"
+          required />
+      </mat-form-field>    
+   </div>
+
+    <div class="row offset-sm-5">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" >
+        Start Quiz
+      </button>
+    </div>
+  </div>
+</form>

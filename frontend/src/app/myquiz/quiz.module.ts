@@ -6,6 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuizRoutingModule } from './quiz-routing.module';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizService } from './_services/quiz.service';
+import { MaterialModule } from '../material.module';
+
 
 @NgModule({
   declarations: [QuizComponent],
@@ -14,7 +16,8 @@ import { QuizService } from './_services/quiz.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuizRoutingModule
+    QuizRoutingModule,
+    MaterialModule
   ],
   providers: [QuizService]
 })
