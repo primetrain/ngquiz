@@ -5,22 +5,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { QuestionsService } from './_shared/questions.service';
 import { AppRoutingModule } from './app-routing.module';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RootComponent } from './root/root.component';
 import { LoginService } from './_shared/login.service';
+import {MaterialModule} from './material';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RootComponent
-  ],
+  declarations: [AppComponent, RootComponent],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [
     QuestionsService,
@@ -28,4 +28,4 @@ import { LoginService } from './_shared/login.service';
   ],
   bootstrap: [RootComponent]
 })
-export class AppModule { }
+export class AppModule {}
