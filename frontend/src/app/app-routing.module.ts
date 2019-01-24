@@ -1,3 +1,4 @@
+
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 import { AppComponent } from "./app.component";
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: "quiz",
-    loadChildren: "./quiz/quiz.module#QuizModule"
+    loadChildren: "./quiz/quiz.module#QuizModule",
+    canActivate: [AuthGuard]
   },
   {
     path: "login",
