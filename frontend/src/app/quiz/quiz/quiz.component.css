@@ -8,26 +8,30 @@
   padding-right: 1.25rem;
 }
 
-.header button{
+.body{
+  background: #d3d3d3;
+}
+.header button {
   margin-left: 10px;
 }
 
 .white-text {
-  color: lightgray;
+  color: brown;
 }
 
 .blue-text {
-  color: lightblue;
+  color: teal;
 }
 
 .green-text {
-  color: #549661;
+  color:  rgb(114, 209, 26);
 }
 
 .card-body input,
 .card-body button {
   display: inline-block;
 }
+
 
 .card-body input {
   padding-left: 0.3125rem;
@@ -42,6 +46,15 @@
   width: 100%;
 }
 
+.mat-raised-button{
+  background-color: teal;
+  color:white;
+}
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
+
 .card-body .input-info {
   padding-left: 0.3125rem;
   font-size: 0.75rem;
@@ -51,19 +64,61 @@ input.correct {
   border-color: #549661;
 }
 
-.validation-result.correct{
+.validation-result.correct {
   color: #549661;
 }
 
 input.incorrect {
-  border-color: #D1675C;
+  border-color: #d1675c;
 }
 
-.validation-result.incorrect{
-  color: #D1675C;
+.validation-result.incorrect {
+  color: #d1675c;
 }
 
 .card-body button {
   width: 15%;
   margin: 0 !important;
+}
+
+#quizResults {
+  color: white;
+
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+#quizResults > div:first-of-type {
+  margin-bottom: 0.625rem;
+}
+
+
+.chips{
+  width:400px;
+}
+.chip1{
+  color:white;
+  background-color: rgb(72, 59, 196);
+  padding: 3%;
+  border-radius: 25px;
+  box-shadow: 2px 4px;
+
+}
+
+
+.chip2{
+  color:white;
+  background-color: rgb(114, 209, 26);
+  padding: 3%;
+  border-radius: 25px;
+  box-shadow: 2px 4px;
+}
+
+
+.chip3{
+  color:white;
+  background-color: rgb(22, 133, 153);
+  padding: 3%;
+  border-radius: 25px;
+  box-shadow: 2px 4px;
 }

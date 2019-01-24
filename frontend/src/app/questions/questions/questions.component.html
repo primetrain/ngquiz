@@ -2,12 +2,10 @@
     <mat-form-field class="search-field">
       <input #searchText id="searchText" matInput placeholder="Enter Search query"/>
     </mat-form-field>
-
       <button class="float-right my-3" mat-raised-button color="primary" (click)="searchQuestionsWithText(searchText.value)">
         <i class="fab fa-searchengin"></i> Search
       </button> 
 </div>
-
 
 <div class="container" style="height: 4em;">
   <button mat-raised-button color="primary" class="float-right my-3 ml-2" (click)="startQuiz()">
@@ -63,3 +61,4 @@
     </span>
   </p>
 </ng-template>
+
