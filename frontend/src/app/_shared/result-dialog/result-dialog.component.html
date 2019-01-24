@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-10 offset-sm-2">
+     <p>
+         Your quiz results are below: 
+     </p>
+     <p>
+         Total Questions: {{ data.total }} 
+     </p>
+     <p>
+         Correctly Answered: {{ data.correct }} 
+     </p>
+     <p>
+         Do you want to play again ? 
+     </p>
+  </div>
+
+  <div class="col-sm-6 offset-sm-6">
+      <button mat-flat-button color="warn" id="no-button" [mat-dialog-close]="false">NO</button>
+      <button mat-flat-button color="primary" id="yes-button" [mat-dialog-close]="true" class="ml-2">YES</button>
+  </div>
+
+</div>

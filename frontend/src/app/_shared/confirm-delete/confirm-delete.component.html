@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-10 offset-sm-2">
+        <p>
+            Are you sure you want to delete the following entry?
+         </p>
+         <p> 
+           Question: {{ data.name }}
+         </p>
+         <p>
+           Answer: {{ data.answer }}
+         </p>
+    </div>
+  
+    <div class="col-sm-6 offset-sm-6">
+        <button mat-flat-button color="warn" id="no-button" [mat-dialog-close]="false">NO</button>
+        <button mat-flat-button color="primary" id="yes-button" [mat-dialog-close]="true" class="ml-2">YES</button>
+    </div>
+  
+  </div>

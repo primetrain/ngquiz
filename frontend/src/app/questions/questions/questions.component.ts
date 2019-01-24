@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from '../../_shared/questions.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { DialogService } from 'src/app/_shared/dialog.service';
 
 @Component({
   selector: 'app-questions',
@@ -15,7 +16,10 @@ export class QuestionsComponent implements OnInit {
   // Filtered questions
   filteredQuestions: Question[];
 
-  constructor(private questionsService: QuestionsService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private questionsService: QuestionsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialogService: DialogService) { }
 
   ngOnInit() {
     this.questionsService
@@ -36,16 +40,21 @@ export class QuestionsComponent implements OnInit {
   }
 
   deleteQuestion (question: Question ) {
-    if(confirm(`Are you sure you want to delete the following entry? \n Question: ${question.name} \n Answer: ${question.answer }`)){
-      this.questionsService
-      .deleteQuestion(question._links.self.href.split("api")[1])
-      .subscribe(response => {
-        console.log(response);
-        this.ngOnInit()
-      }, error => {
-        console.error(error)
-      })
-    }
+    this.dialogService
+    .confirmDelete(question)
+    .afterClosed()
+    .subscribe(decision => {
+          if(decision){
+            this.questionsService
+            .deleteQuestion(question._links.self.href.split("api")[1])
+            .subscribe(response => {
+              console.log(response);
+              this.ngOnInit()
+            }, error => {
+              console.error(error)
+            })
+          }
+    })
   }
 
   editQuestion (question: Question) {
@@ -55,7 +64,24 @@ export class QuestionsComponent implements OnInit {
 
   // returns question by the search on the question and answer
   searchQuestionsWithText(search: string){
+  //  console.log(search)
     this.filteredQuestions = [...this.questions.filter(val => val.name.indexOf(search) > -1 || val.answer.indexOf(search) > -1)];
+  }
+
+  startQuiz(){
+    this.dialogService
+    .getNumberOfQuestion()
+    .afterClosed()
+    .subscribe(response =>{
+      if(response){
+        let navigationExtras: NavigationExtras = {
+          queryParams: { 'numberOfQuestions': response }
+        }
+        this.router.navigate(["/myquiz"], navigationExtras)
+      }
+    }, error => {
+      console.log(error)
+    })
   }
 
 }
