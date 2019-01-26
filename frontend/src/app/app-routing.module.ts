@@ -7,7 +7,8 @@ import { AuthGuard } from "./_shared/auth.guard";
 const routes: Routes = [
   {
     path: "myquiz",
-    loadChildren: "./myquiz/quiz.module#QuizModule"
+    loadChildren: "./myquiz/quiz.module#QuizModule",
+    canActivate: [AuthGuard]
   },
   {
     path: "admin",

@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from './_shared/login.service';
+import {Component, NgZone} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginService} from './_shared/login.service';
+import {
+  OAuthService,
+  OAuthErrorEvent,
+  LoginOptions
+} from "angular-oauth2-oidc"; // Add this import
 
-declare var FB;
+declare let FB;
 
 @Component({
   selector: 'app-root-default',
@@ -11,49 +16,71 @@ declare var FB;
 })
 export class AppComponent {
   title = 'app';
+  username = "";
 
-  constructor (private router: Router, private loginService: LoginService){}
+  constructor(private router: Router, private loginService: LoginService, private oauthService: OAuthService,
+              private ngZone: NgZone) {
+
+    oauthService
+      .loadDiscoveryDocument() // Load information from Auth0
+      .then(() => oauthService.tryLogin()) // See if the hash fragment contains tokens (when user got redirected back)
+      .then(() => {
+        if (!oauthService.hasValidAccessToken()) {
+          // If we're still not logged in yet, try with a silent refresh:
+          return oauthService.silentRefresh();
+        }
+      })
+      .then(() => {
+        if (oauthService.getIdentityClaims()) {
+          this.username = oauthService.getIdentityClaims()["name"]; // Get username, if possible.
+        }
+      });
+    oauthService.setupAutomaticSilentRefresh();
+  }
 
   ngOnInit(): void {
-
-    (window as any).fbAsyncInit = function() {
-      FB.init({
-        appId      : '2212098502337513',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v1.1'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
   }
 
-  submitLogin(){
+  submitLogin() {
     console.log("submit login to facebook");
-    // FB.login();
-    FB.login((response)=>
-        {
-          console.log('submitLogin',response);
-          if (response.authResponse)
-          {
-            this.loginService.Authenticate = true;
-            this.router.navigate(["/admin/questions"])
-           }
-           else
-           {
-           console.log('User login failed');
-         }
-      });
+    FB.login((response) => {
+      console.log('submitLogin', response);
+      if (response.authResponse) {
+        this.loginService.Authenticate = true;
+
+        this.ngZone.run(() => {
+          this.router.navigate(["/admin/questions"])
+        });
+      }
+      else {
+        console.log('User login failed');
+      }
+    });
 
   }
 
+  submitGoogleLogin() {
+    this.login();
+  }
 
+  get token() {
+    return this.oauthService.getAccessToken();
+  }
+
+  get claims() {
+    return this.oauthService.getIdentityClaims();
+  }
+
+  login() {
+    this.oauthService.initImplicitFlow();
+  }
+
+  logout() {
+    this.oauthService.logOut();
+  }
+
+  refresh() {
+    this.oauthService.silentRefresh();
+  }
 }
 

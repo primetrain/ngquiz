@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  loggedIn: Boolean
+  loggedIn: boolean = false;
   constructor() {  }
 
-  set Authenticate(status: Boolean){
+  set Authenticate(status: boolean){
     this.loggedIn = status
   }
 
