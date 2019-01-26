@@ -14,6 +14,7 @@ import { ConfirmDialogComponent } from './_shared/confirm-dialog/confirm-dialog.
 import { ResultDialogComponent } from './_shared/result-dialog/result-dialog.component';
 import { ConfirmDeleteComponent } from './_shared/confirm-delete/confirm-delete.component';
 import { CustomDialogComponent } from './_shared/custom-dialog/custom-dialog.component';
+import {AuthModule} from "./auth/auth.module";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CustomDialogComponent } from './_shared/custom-dialog/custom-dialog.com
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AuthModule
   ],
   providers: [
     QuestionsService,

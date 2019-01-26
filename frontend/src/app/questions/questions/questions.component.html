@@ -4,16 +4,23 @@
     </mat-form-field>
       <button class="float-right my-3" mat-raised-button color="primary" (click)="searchQuestionsWithText(searchText.value)">
         <i class="fab fa-searchengin"></i> Search
-      </button> 
+      </button>
 </div>
 
 <div class="container" style="height: 4em;">
+  <button mat-raised-button color="primary" class="float-right my-3 ml-2" [routerLink]="['/quiz']">
+    <mat-icon>
+      assignment
+    </mat-icon>
+
+    Take Quiz 2
+  </button>
   <button mat-raised-button color="primary" class="float-right my-3 ml-2" (click)="startQuiz()">
     <mat-icon>
       assignment
     </mat-icon>
 
-    Take Quiz
+    Take Quiz 1
   </button>
   <button mat-raised-button color="primary" class="float-right my-3" (click)="addQuestion()">
     <mat-icon>

@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { ResultDialogComponent } from './result-dialog/result-dialog.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
+import {Question} from "../questions/_models/Question.model";
 
 @Injectable({
   providedIn: 'root'

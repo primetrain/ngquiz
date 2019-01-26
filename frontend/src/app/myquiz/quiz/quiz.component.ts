@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { of } from 'rxjs';
 import { DialogService } from 'src/app/_shared/dialog.service';
+import {Question} from "../../questions/_models/Question.model";
 
 
 @Component({
@@ -77,7 +78,7 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  getData(noOfQuestions: Number) {
+  getData(noOfQuestions: number) {
     this.quizService
       .getQuestions(noOfQuestions)
       .subscribe(

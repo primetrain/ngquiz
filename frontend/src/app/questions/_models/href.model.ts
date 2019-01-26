@@ -1,3 +1,3 @@
-interface Href{
+export interface Href{
     href: String
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionsService } from '../../_shared/questions.service';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { DialogService } from 'src/app/_shared/dialog.service';
+import {Question} from "../_models/Question.model";
 
 @Component({
   selector: 'app-questions',
