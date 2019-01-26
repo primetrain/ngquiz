@@ -1,10 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import {forkJoin, Observable, of, ReplaySubject, Subject, zip} from 'rxjs';
 import {OAuthService} from "angular-oauth2-oidc";
 import {fromPromise} from "rxjs/internal/observable/fromPromise";
 import {map} from "rxjs/operators";
-import {flatMap} from "tslint/lib/utils";
 
 declare let FB;
 
@@ -67,6 +66,7 @@ export class AuthGuard implements CanActivate {
     zip(this._isLoggedInViaFacebook$, this._isLoggedInViaGoogle$).subscribe(res => {
       const isLoggedIn = res[0] || res[1];
 
+      console.log(`Logged in anywhere: ${isLoggedIn}`);
       if (!isLoggedIn) {
         this.router.navigate([""]);
       }
@@ -81,7 +81,7 @@ export class AuthGuard implements CanActivate {
 function fnFbLoginCheck(fb, thisObj) {
 
   // Check for facebook authentication
-  fb.getLoginStatus((response) => {
+  fb.getLoginStatus(function (response) {
 
     console.log(`Facebook login status: ${response.status}`);
     if (response.status === 'connected') {

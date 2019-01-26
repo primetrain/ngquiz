@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from './_shared/login.service';
 import {
@@ -18,7 +18,8 @@ export class AppComponent {
   title = 'app';
   username = "";
 
-  constructor(private router: Router, private loginService: LoginService, private oauthService: OAuthService) {
+  constructor(private router: Router, private loginService: LoginService, private oauthService: OAuthService,
+              private ngZone: NgZone) {
 
     oauthService
       .loadDiscoveryDocument() // Load information from Auth0
@@ -46,7 +47,10 @@ export class AppComponent {
       console.log('submitLogin', response);
       if (response.authResponse) {
         this.loginService.Authenticate = true;
-        this.router.navigate(["/admin/questions"])
+
+        this.ngZone.run(() => {
+          this.router.navigate(["/admin/questions"])
+        });
       }
       else {
         console.log('User login failed');
